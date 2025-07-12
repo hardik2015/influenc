@@ -44,7 +44,7 @@ def build_prompt(main_prompt: str):
     return ', '.join(prefix_lines + [main_prompt] + suffix_lines)
 
 def load_workflow():
-    workflow_path = os.path.join(os.getcwd(), "sticker.json")
+    workflow_path = os.path.join(os.getcwd(), "influn.json")
     if not os.path.exists(workflow_path):
         raise FileNotFoundError(f"Workflow file not found: {workflow_path}")
     with open(workflow_path, encoding="utf-8") as f:
