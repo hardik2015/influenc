@@ -1,0 +1,4 @@
+blonde|brown|black|dark|light|natural|__color__|__color_hair__|__color_hair__|__color_hair__|gradient colored|multicolored 
+wearing glasses
+a __z-hair__ hairstyle
+__z-location__
