@@ -9,7 +9,7 @@ COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
 COMFY_API_PROMPT = f"{COMFY_API_BASE}/prompt"
 COMFY_API_QUEUE = f"{COMFY_API_BASE}/queue"
 PROMPT_NODE_ID = "163"
-UPLOAD_FOLDER = "../ComfyUI/output"
+UPLOAD_FOLDER = "../ComfyUI/output/"
 HOST = "0.0.0.0"
 PORT = 5010
 
@@ -57,11 +57,11 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
     node = payload["prompt"].get(node_id)
     if not node or "inputs" not in node:
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
+    print(prompt_text)
     node["inputs"]["wildcard_text"] = prompt_text
     return payload
 
 def send_to_comfy(payload):
-    print("🚀 Sending payload to ComfyUI:", json.dumps(payload, indent=2))
     try:
         resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10)
         resp.raise_for_status()
@@ -75,7 +75,8 @@ def send_to_comfy(payload):
 def upload_to_nextcloud():
     global upload_status
     upload_status = {"total": 0, "uploaded": 0, "errors": []}
-    files = list(Path(UPLOAD_FOLDER).glob("*"))
+    todaydate = "/"+datetime.date.today().strftime("%Y-%m-%d")
+    files = list(Path(UPLOAD_FOLDER + todaydate).glob("*"))
     upload_status["total"] = len(files)
 
     for file_path in files:
