@@ -57,7 +57,7 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
     node = payload["prompt"].get(node_id)
     if not node or "inputs" not in node:
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
-    node["inputs"]["text"] = prompt_text
+    node["inputs"]["wildcard_text"] = prompt_text
     return payload
 
 def send_to_comfy(payload):
