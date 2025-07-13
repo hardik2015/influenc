@@ -196,7 +196,7 @@
   },
   "486": {
     "inputs": {
-      "model_name": "hand_yolov8s.pt"
+      "model_name": "bbox/hand_yolov8s.pt"
     },
     "class_type": "UltralyticsDetectorProvider",
     "_meta": {
@@ -217,7 +217,7 @@
   },
   "488": {
     "inputs": {
-      "model_name": "face_yolov8s.pt"
+      "model_name": "bbox/face_yolov8s.pt"
     },
     "class_type": "UltralyticsDetectorProvider",
     "_meta": {
