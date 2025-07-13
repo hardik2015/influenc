@@ -75,8 +75,7 @@ def send_to_comfy(payload):
 def upload_to_nextcloud():
     global upload_status
     upload_status = {"total": 0, "uploaded": 0, "errors": []}
-    todaydate = "/"+datetime.date.today().strftime("%Y-%m-%d")
-    files = list(Path(UPLOAD_FOLDER + todaydate).glob("*"))
+    files = list(Path(UPLOAD_FOLDER).glob("*"))
     upload_status["total"] = len(files)
 
     for file_path in files:
