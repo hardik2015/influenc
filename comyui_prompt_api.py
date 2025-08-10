@@ -78,18 +78,17 @@ def upload_to_imagekit():
 
     for file_path in files:
         try:
-            with open(file_path, "rb") as f:
-                upload = imagekit.upload_file(
-                    file=f,
-                    file_name=os.path.basename(file_path),
-                    options={"folder": "/comfyui-uploads"}
-                )
-                upload_status["uploaded"] += 1
-                upload_status["files"].append({
-                    "file": file_path.name,
-                    "url": upload.url
-                })
-                print(f"✅ Uploaded: {upload.url}")
+            upload = imagekit.upload_file(
+                file=open(file_path, "rb"),
+                file_name=os.path.basename(file_path),
+                options={"folder": "/comfyui-uploads"}
+            )
+            upload_status["uploaded"] += 1
+            upload_status["files"].append({
+                "file": file_path.name,
+                "url": upload.url
+            })
+            print(f"✅ Uploaded: {upload.url}")
         except Exception as e:
             upload_status["errors"].append({
                 "file": file_path.name,
