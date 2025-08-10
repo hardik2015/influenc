@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-import os, json, requests, sys
+import os, json, sys
 from threading import Thread
 from pathlib import Path
-from requests.auth import HTTPBasicAuth
+from imagekitio import ImageKit
 
 # ——— CONFIG ———
 COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
@@ -13,29 +13,35 @@ UPLOAD_FOLDER = "../ComfyUI/output/"
 HOST = "0.0.0.0"
 PORT = 5010
 
-# Accept WebDAV credentials from command line
+# Accept ImageKit credentials from command line
 if len(sys.argv) < 4:
-    print("Usage: python script.py <webdav_url> <username> <password>")
+    print("Usage: python script.py <imagekit_private_key> <imagekit_public_key> <imagekit_url_endpoint>")
     sys.exit(1)
 
-WEBDAV_URL = sys.argv[1]
-WEBDAV_USERNAME = sys.argv[2]
-WEBDAV_PASSWORD = sys.argv[3]
+IMAGEKIT_PRIVATE_KEY = sys.argv[1]
+IMAGEKIT_PUBLIC_KEY = sys.argv[2]
+IMAGEKIT_URL_ENDPOINT = sys.argv[3]
+
+# Initialize ImageKit
+imagekit = ImageKit(
+    private_key=IMAGEKIT_PRIVATE_KEY,
+    public_key=IMAGEKIT_PUBLIC_KEY,
+    url_endpoint=IMAGEKIT_URL_ENDPOINT
+)
 
 # Upload status
 upload_status = {
     "total": 0,
     "uploaded": 0,
+    "files": [],
     "errors": []
 }
 
 app = Flask(__name__)
 
 # ——— Utility Functions ———
-
 def read_all_lines(filename):
-    path = os.path.join(filename)
-    with open(path, encoding="utf-8") as f:
+    with open(filename, encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
 
 def build_prompt(main_prompt: str):
@@ -48,46 +54,47 @@ def load_workflow():
     if not os.path.exists(workflow_path):
         raise FileNotFoundError(f"Workflow file not found: {workflow_path}")
     with open(workflow_path, encoding="utf-8") as f:
-        wf = json.load(f)
-    return {"prompt": wf}
+        return {"prompt": json.load(f)}
 
 def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
-    if "prompt" not in payload:
-        raise ValueError("Payload missing 'prompt' key")
     node = payload["prompt"].get(node_id)
     if not node or "inputs" not in node:
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
-    print(prompt_text)
     node["inputs"]["wildcard_text"] = prompt_text
     return payload
 
 def send_to_comfy(payload):
-    try:
-        resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
-        return data
-    except requests.exceptions.RequestException as e:
-        print("❌ Error from ComfyUI API:", str(e))
-        raise RuntimeError(f"Failed to send to ComfyUI API at {COMFY_API_PROMPT}: {str(e)}")
+    import requests
+    resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10)
+    resp.raise_for_status()
+    return resp.json()
 
-# ——— Upload Logic ———
-def upload_to_nextcloud():
+# ——— Upload Logic (ImageKit SDK) ———
+def upload_to_imagekit():
     global upload_status
-    upload_status = {"total": 0, "uploaded": 0, "errors": []}
+    upload_status = {"total": 0, "uploaded": 0, "files": [], "errors": []}
     files = list(Path(UPLOAD_FOLDER).glob("*"))
     upload_status["total"] = len(files)
 
     for file_path in files:
         try:
-            with open(file_path, 'rb') as f:
-                dest = f"{WEBDAV_URL.rstrip('/')}/{file_path.name}"
-                print("✅ ComfyUI response:", dest)
-                resp = requests.put(dest, data=f, auth=HTTPBasicAuth(WEBDAV_USERNAME, WEBDAV_PASSWORD))
-                resp.raise_for_status()
+            with open(file_path, "rb") as f:
+                upload = imagekit.upload_file(
+                    file=f,
+                    file_name=file_path.name,
+                    options={"folder": "/comfyui-uploads"}
+                )
                 upload_status["uploaded"] += 1
+                upload_status["files"].append({
+                    "file": file_path.name,
+                    "url": upload.url
+                })
+                print(f"✅ Uploaded: {upload.url}")
         except Exception as e:
-            upload_status["errors"].append({"file": file_path.name, "error": str(e)})
+            upload_status["errors"].append({
+                "file": file_path.name,
+                "error": str(e)
+            })
 
 # ——— API Endpoints ———
 @app.route('/generate', methods=['POST'])
@@ -114,18 +121,16 @@ def generate():
 
 @app.route('/queue', methods=['GET'])
 def check_queue():
-    try:
-        resp = requests.get(COMFY_API_QUEUE, timeout=5)
-        resp.raise_for_status()
-        return jsonify(status='success', queue=resp.json())
-    except requests.RequestException as e:
-        return jsonify(status='error', message=str(e)), 500
+    import requests
+    resp = requests.get(COMFY_API_QUEUE, timeout=5)
+    resp.raise_for_status()
+    return jsonify(status='success', queue=resp.json())
 
 @app.route('/upload-files', methods=['POST'])
 def start_upload():
-    thread = Thread(target=upload_to_nextcloud)
+    thread = Thread(target=upload_to_imagekit)
     thread.start()
-    return jsonify(status='started', message='Upload process initiated.')
+    return jsonify(status='started', message='Upload process to ImageKit initiated.')
 
 @app.route('/upload-status', methods=['GET'])
 def get_upload_status():
