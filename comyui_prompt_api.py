@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 import os, json, sys
 from threading import Thread
 from pathlib import Path
-from imagekitio import ImageKit, UploadFileRequestOptions
+from imagekitio import ImageKit
+from imagekitio.models.UploadFileRequestOptions import UploadFileRequestOptions
 import traceback
 
 # ——— CONFIG ———
