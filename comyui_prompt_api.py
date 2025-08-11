@@ -79,7 +79,7 @@ def upload_to_imagekit():
     for file_path in files:
         try:
             upload = imagekit.upload_file(
-                file=file_path,
+                file=open(os.path.abspath(file_path), "rb"),
                 file_name=os.path.basename(file_path),
                 options={"folder": "/comfyui-uploads"}
             )
