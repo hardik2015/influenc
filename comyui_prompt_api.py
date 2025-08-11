@@ -82,7 +82,7 @@ def upload_to_imagekit():
             upload = imagekit.upload_file(
                 file=open(os.path.abspath(file_path), "rb"),
                 file_name=os.path.basename(file_path),
-                options={"folder": "/comfyui-uploads"}
+                options={"folder": "/Influncer"}
             )
             upload_status["uploaded"] += 1
             upload_status["files"].append({
