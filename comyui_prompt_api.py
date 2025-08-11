@@ -3,6 +3,7 @@ import os, json, sys
 from threading import Thread
 from pathlib import Path
 from imagekitio import ImageKit
+import traceback
 
 # ——— CONFIG ———
 COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
@@ -94,6 +95,7 @@ def upload_to_imagekit():
                 "file": file_path.name,
                 "error": str(e)
             })
+            print(traceback.format_exc())
 
 # ——— API Endpoints ———
 @app.route('/generate', methods=['POST'])
