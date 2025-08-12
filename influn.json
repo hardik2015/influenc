@@ -55,8 +55,8 @@
   },
   "163": {
     "inputs": {
-      "wildcard_text": "A happy woman, (blushing:1.4), {open mouth|}, smiling holding a large beer, smiling, in festive clothes. Deep clevage. Downblouse. {drinking}",
-      "populated_text": "A happy woman, (blushing:1.4), , smiling holding a large beer, smiling, in festive clothes. Deep clevage. Downblouse. drinking",
+      "wildcard_text": "",
+      "populated_text": "",
       "mode": "rendomize",
       "seed": 687462579387495,
       "Select to add Wildcard": "Select the Wildcard to add to the text"
