@@ -80,17 +80,19 @@ def upload_to_imagekit():
 
     for file_path in files:
         try:
-            upload = imagekit.upload_file(
-                file=open(os.path.abspath(file_path), "rb"),
-                file_name=os.path.basename(file_path),
-                options=UploadFileRequestOptions(folder="/Influncer/")
-            )
-            upload_status["uploaded"] += 1
-            upload_status["files"].append({
-                "file": file_path.name,
-                "url": upload.url
-            })
-            print(f"✅ Uploaded: {upload.url}")
+            with open(file_path, "rb") as f:
+                upload = imagekit.upload_file(
+                    file=f,
+                    file_name=os.path.basename(file_path),
+                    options=UploadFileRequestOptions(folder="/Influncer/")
+                )
+                upload_status["uploaded"] += 1
+                upload_status["files"].append({
+                    "file": file_path.name,
+                    "url": upload.url
+                })
+                print(f"✅ Uploaded: {upload.url}")    
+            os.remove(file_path) 
         except Exception as e:
             upload_status["errors"].append({
                 "file": file_path.name,
