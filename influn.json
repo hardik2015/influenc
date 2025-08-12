@@ -57,7 +57,7 @@
     "inputs": {
       "wildcard_text": "",
       "populated_text": "",
-      "mode": "rendomize",
+      "mode": "reproduce",
       "seed": 687462579387495,
       "Select to add Wildcard": "Select the Wildcard to add to the text"
     },
