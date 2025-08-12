@@ -1,1 +1,1 @@
- <lora:dmd2_sdxl_4step_lora:0.7>
+detailed background<lora:dmd2_sdxl_4step_lora:0.7>
