@@ -78,7 +78,7 @@ def send_to_comfy(payload):
 def upload_to_imagekit():
     global upload_status
     upload_status = {"total": 0, "uploaded": 0, "files": [], "errors": []}
-    files = list(Path(UPLOAD_FOLDER).glob("*"))
+    files = [f for f in Path(UPLOAD_FOLDER).glob("*") if f.is_file()]
     upload_status["total"] = len(files)
 
     for file_path in files:
