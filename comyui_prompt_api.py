@@ -16,13 +16,14 @@ HOST = "0.0.0.0"
 PORT = 5010
 
 # Accept ImageKit credentials from command line
-if len(sys.argv) < 4:
-    print("Usage: python script.py <imagekit_private_key> <imagekit_public_key> <imagekit_url_endpoint>")
+if len(sys.argv) < 5:
+    print("Usage: python script.py <imagekit_private_key> <imagekit_public_key> <imagekit_url_endpoint> <comfyui-token>")
     sys.exit(1)
 
 IMAGEKIT_PRIVATE_KEY = sys.argv[1]
 IMAGEKIT_PUBLIC_KEY = sys.argv[2]
 IMAGEKIT_URL_ENDPOINT = sys.argv[3]
+COMFYUI_TOKEN_AUTH = sys.argv[4]
 
 # Initialize ImageKit
 imagekit = ImageKit(
@@ -67,6 +68,7 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
 
 def send_to_comfy(payload):
     import requests
+    headers = {"Cookie": f"{COMFYUI_TOKEN_AUTH}"}
     resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10)
     resp.raise_for_status()
     return resp.json()
