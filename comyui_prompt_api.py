@@ -69,7 +69,7 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
 def send_to_comfy(payload):
     import requests
     headers = {"Cookie": f"{COMFYUI_TOKEN_AUTH}"}
-    resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10)
+    resp = requests.post(COMFY_API_PROMPT, json=payload, timeout=10, headers=headers)
     resp.raise_for_status()
     return resp.json()
 
@@ -132,7 +132,8 @@ def generate():
 @app.route('/queue', methods=['GET'])
 def check_queue():
     import requests
-    resp = requests.get(COMFY_API_QUEUE, timeout=5)
+    headers = {"Cookie": f"{COMFYUI_TOKEN_AUTH}"}
+    resp = requests.get(COMFY_API_QUEUE, timeout=5, headers=headers)
     resp.raise_for_status()
     return jsonify(status='success', queue=resp.json())
 
