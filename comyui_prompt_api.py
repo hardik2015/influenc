@@ -80,10 +80,14 @@ def upload_to_imagekit():
 
     for file_path in files:
         try:
+            filename = datetime.utcnow().strftime("%Y-%m-%d_%H-%M-%S")
+            extension = os.path.splitext(file_path)[1]  # e.g. ".jpg" / ".png"
+            final_filename = f"{filename}{extension}"
+
             with open(file_path, "rb") as f:
                 upload = imagekit.upload_file(
                     file=f,
-                    file_name=os.path.basename(file_path),
+                    file_name=final_filename,
                     options=UploadFileRequestOptions(folder="/Influncer/")
                 )
                 upload_status["uploaded"] += 1
