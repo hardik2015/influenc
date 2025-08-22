@@ -499,7 +499,7 @@
   },
   "548": {
     "inputs": {
-      "ckpt_name": "Perfection_ILXL_Realistic_4.1.safetensors"
+      "ckpt_name": "perfectionRealisticILXL_41.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
