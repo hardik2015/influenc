@@ -6,6 +6,7 @@ from imagekitio import ImageKit
 from imagekitio.models.UploadFileRequestOptions import UploadFileRequestOptions
 import traceback
 from datetime import datetime
+import random
 
 # ——— CONFIG ———
 COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
