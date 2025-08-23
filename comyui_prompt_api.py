@@ -118,8 +118,11 @@ def upload_to_imagekit():
 def generate():
     data = request.get_json(force=True)
     prompts = data.get('prompts')
+    count = data.get('count')
     if not prompts or not isinstance(prompts, list):
         return jsonify(status='error', message='Missing or invalid "prompts" field (expected list)'), 400
+    if not count or not isinstance(prompts, int):
+        return jsonify(status='error', message='Missing or invalid "count" field (expected int)'), 400
 
     results = []
     for p in prompts:
@@ -128,9 +131,10 @@ def generate():
         try:
             full_prompt = build_prompt(p)
             payload = load_workflow()
-            payload = inject_prompt(payload, full_prompt)
-            result = send_to_comfy(payload)
-            results.append({"prompt": p, "status": "submitted", "response": result})
+            for counter in count:
+                payload = inject_prompt(payload, full_prompt)
+                result = send_to_comfy(payload)
+                results.append({"prompt": p, "status": "submitted", "response": result})
         except Exception as e:
             results.append({"prompt": p, "status": "error", "message": str(e)})
 
