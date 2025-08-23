@@ -64,9 +64,13 @@ def load_workflow():
 
 def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
     node = payload["prompt"].get(node_id)
+    seednode1 = payload["prompt"].get(SEED_NODE_ID1)
+    seednode2 = payload["prompt"].get(SEED_NODE_ID2)
     if not node or "inputs" not in node:
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
     node["inputs"]["wildcard_string"] = prompt_text
+    seednode1["inputs"]["seed"] = random.randint(10**13, 10**14 - 1)
+    seednode2["inputs"]["seed"] = random.randint(10**13, 10**14 - 1)
     return payload
 
 def send_to_comfy(payload):
