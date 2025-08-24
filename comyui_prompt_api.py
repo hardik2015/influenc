@@ -132,7 +132,7 @@ def generate():
         try:
             full_prompt = build_prompt(p)
             payload = load_workflow()
-            for counter in count:
+            for counter in range(count):
                 payload = inject_prompt(payload, full_prompt)
                 result = send_to_comfy(payload)
                 results.append({"prompt": p, "status": "submitted", "response": result})
