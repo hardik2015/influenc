@@ -122,7 +122,7 @@ def generate():
     count = data.get('count')
     if not prompts or not isinstance(prompts, list):
         return jsonify(status='error', message='Missing or invalid "prompts" field (expected list)'), 400
-    if not count or not isinstance(prompts, int):
+    if not count or not isinstance(count, int):
         return jsonify(status='error', message='Missing or invalid "count" field (expected int)'), 400
 
     results = []
