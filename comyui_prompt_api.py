@@ -12,9 +12,8 @@ import random
 COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
 COMFY_API_PROMPT = f"{COMFY_API_BASE}/prompt"
 COMFY_API_QUEUE = f"{COMFY_API_BASE}/queue"
-PROMPT_NODE_ID = "558"
-SEED_NODE_ID1="272"
-SEED_NODE_ID2="291"
+PROMPT_NODE_ID = "16"
+SEED_NODE_ID1="3"
 UPLOAD_FOLDER = "../ComfyUI/output/"
 HOST = "0.0.0.0"
 PORT = 5010
@@ -71,7 +70,6 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
     node["inputs"]["wildcard_string"] = prompt_text
     seednode1["inputs"]["seed"] = random.randint(10**13, 10**14 - 1)
-    seednode2["inputs"]["seed"] = random.randint(10**13, 10**14 - 1)
     return payload
 
 def send_to_comfy(payload):
