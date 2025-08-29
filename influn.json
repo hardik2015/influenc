@@ -1,101 +1,26 @@
 {
-  "54": {
+  "3": {
     "inputs": {
-      "text": [
-        "423",
-        2
-      ],
-      "clip": [
-        "423",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "55": {
-    "inputs": {
-      "samples": [
-        "272",
-        0
-      ],
-      "vae": [
-        "548",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE Decode"
-    }
-  },
-  "272": {
-    "inputs": {
-      "seed": 149087185555433,
-      "steps": 16,
-      "cfg": 1.5,
-      "sampler_name": "lcm",
-      "scheduler": "normal",
+      "seed": 875852684844049,
+      "steps": 50,
+      "cfg": 5,
+      "sampler_name": "uni_pc",
+      "scheduler": "simple",
       "denoise": 1,
       "model": [
-        "423",
+        "70",
         0
       ],
       "positive": [
-        "54",
+        "16",
         0
       ],
       "negative": [
-        "276",
+        "82",
         0
       ],
       "latent_image": [
-        "422",
-        4
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "276": {
-    "inputs": {
-      "text": "watermark, text, simple background,nswf, nipples",
-      "clip": [
-        "423",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "291": {
-    "inputs": {
-      "seed": 82146683416202,
-      "steps": 8,
-      "cfg": 1.8,
-      "sampler_name": "lcm",
-      "scheduler": "simple",
-      "denoise": 0.3,
-      "model": [
-        "423",
-        0
-      ],
-      "positive": [
-        "54",
-        0
-      ],
-      "negative": [
-        "276",
-        0
-      ],
-      "latent_image": [
-        "513",
+        "53",
         0
       ]
     },
@@ -104,413 +29,27 @@
       "title": "KSampler"
     }
   },
-  "292": {
+  "8": {
     "inputs": {
       "samples": [
-        "291",
+        "3",
         0
       ],
       "vae": [
-        "548",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE Decode"
-    }
-  },
-  "360": {
-    "inputs": {
-      "string_a": [
-        "557",
-        0
-      ],
-      "string_b": [
-        "516",
-        0
-      ]
-    },
-    "class_type": "ConcatStringSingle",
-    "_meta": {
-      "title": "Concat String (Single) 📅🅕🅝"
-    }
-  },
-  "422": {
-    "inputs": {
-      "preset": "SDXL: [Portrait] 768x1344 9:16",
-      "preset_user": "Favorites: [Portrait] 540x960 9:16",
-      "custom_width": 512,
-      "custom_height": 512,
-      "multiply_scale": 2,
-      "swap_width_and_height": false,
-      "image_min_length": 0,
-      "image_max_length": 0,
-      "snap_to_nearest": false,
-      "snap_resolution": 0,
-      "batch_size": 1
-    },
-    "class_type": "📐 Resolution Image Size Selector",
-    "_meta": {
-      "title": "📐 Resolution Image Size Selector"
-    }
-  },
-  "423": {
-    "inputs": {
-      "MODEL": [
-        "548",
-        0
-      ],
-      "CLIP": [
-        "548",
-        1
-      ],
-      "STRING": [
-        "360",
-        0
-      ]
-    },
-    "class_type": "🏷️ LoRA Loader Prompt Tags",
-    "_meta": {
-      "title": "🏷️ LoRA Loader Prompt Tags"
-    }
-  },
-  "486": {
-    "inputs": {
-      "model_name": "bbox/hand_yolov8s.pt"
-    },
-    "class_type": "UltralyticsDetectorProvider",
-    "_meta": {
-      "title": "Hand Model Loader"
-    }
-  },
-  "487": {
-    "inputs": {
-      "detailer_pipe": [
-        "496",
-        4
-      ]
-    },
-    "class_type": "FromDetailerPipe",
-    "_meta": {
-      "title": "FromDetailerPipe"
-    }
-  },
-  "488": {
-    "inputs": {
-      "model_name": "bbox/face_yolov8s.pt"
-    },
-    "class_type": "UltralyticsDetectorProvider",
-    "_meta": {
-      "title": "UltralyticsDetectorProvider"
-    }
-  },
-  "489": {
-    "inputs": {
-      "text": "ugly",
-      "clip": [
-        "423",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "490": {
-    "inputs": {
-      "text": "hand, (detailed realistic skin:0.2)",
-      "clip": [
-        "487",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "491": {
-    "inputs": {
-      "String": "perfect eyes, (detailed realistic skin:0.3)"
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "Face Detailer Appended Prompt"
-    }
-  },
-  "492": {
-    "inputs": {
-      "string_a": [
-        "423",
-        2
-      ],
-      "string_b": [
-        "491",
-        0
-      ]
-    },
-    "class_type": "ConcatStringSingle",
-    "_meta": {
-      "title": "Concat String (Single) 📅🅕🅝"
-    }
-  },
-  "493": {
-    "inputs": {
-      "text": [
-        "492",
-        0
-      ],
-      "clip": [
-        "423",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "495": {
-    "inputs": {
-      "guide_size": 1536,
-      "guide_size_for": true,
-      "max_size": 1536,
-      "seed": 426628674114590,
-      "steps": 8,
-      "cfg": 1.2000000000000002,
-      "sampler_name": "lcm",
-      "scheduler": "normal",
-      "denoise": 0.25000000000000006,
-      "feather": 100,
-      "noise_mask": true,
-      "force_inpaint": true,
-      "bbox_threshold": 0.5,
-      "bbox_dilation": 10,
-      "bbox_crop_factor": 3,
-      "sam_detection_hint": "center-1",
-      "sam_dilation": 0,
-      "sam_threshold": 0.93,
-      "sam_bbox_expansion": 0,
-      "sam_mask_hint_threshold": 0.7,
-      "sam_mask_hint_use_negative": "False",
-      "drop_size": 10,
-      "wildcard": "",
-      "cycle": 1,
-      "inpaint_model": false,
-      "noise_mask_feather": 20,
-      "tiled_encode": false,
-      "tiled_decode": false,
-      "image": [
-        "496",
-        0
-      ],
-      "model": [
-        "423",
-        0
-      ],
-      "clip": [
-        "423",
-        1
-      ],
-      "vae": [
-        "548",
-        2
-      ],
-      "positive": [
-        "490",
-        0
-      ],
-      "negative": [
-        "487",
-        4
-      ],
-      "bbox_detector": [
-        "486",
-        0
-      ]
-    },
-    "class_type": "FaceDetailer",
-    "_meta": {
-      "title": "2 - Hand Detailer"
-    }
-  },
-  "496": {
-    "inputs": {
-      "guide_size": 1536,
-      "guide_size_for": true,
-      "max_size": 1536,
-      "seed": 347556469013030,
-      "steps": 8,
-      "cfg": 1.2000000000000002,
-      "sampler_name": "lcm",
-      "scheduler": "normal",
-      "denoise": 0.15000000000000002,
-      "feather": 80,
-      "noise_mask": true,
-      "force_inpaint": true,
-      "bbox_threshold": 0.5,
-      "bbox_dilation": 150,
-      "bbox_crop_factor": 3,
-      "sam_detection_hint": "center-1",
-      "sam_dilation": 0,
-      "sam_threshold": 0.93,
-      "sam_bbox_expansion": 0,
-      "sam_mask_hint_threshold": 0.7,
-      "sam_mask_hint_use_negative": "False",
-      "drop_size": 10,
-      "wildcard": "",
-      "cycle": 1,
-      "inpaint_model": false,
-      "noise_mask_feather": 20,
-      "tiled_encode": false,
-      "tiled_decode": false,
-      "image": [
-        "292",
-        0
-      ],
-      "model": [
-        "423",
-        0
-      ],
-      "clip": [
-        "423",
-        1
-      ],
-      "vae": [
-        "548",
-        2
-      ],
-      "positive": [
-        "493",
-        0
-      ],
-      "negative": [
-        "489",
-        0
-      ],
-      "bbox_detector": [
-        "488",
-        0
-      ]
-    },
-    "class_type": "FaceDetailer",
-    "_meta": {
-      "title": "FaceDetailer"
-    }
-  },
-  "509": {
-    "inputs": {
-      "model_name": "4x-UltraSharp.pth"
-    },
-    "class_type": "UpscaleModelLoader",
-    "_meta": {
-      "title": "Load Upscale Model"
-    }
-  },
-  "510": {
-    "inputs": {
-      "upscale_model": [
-        "509",
-        0
-      ],
-      "image": [
         "55",
         0
       ]
     },
-    "class_type": "ImageUpscaleWithModel",
+    "class_type": "VAEDecode",
     "_meta": {
-      "title": "Upscale Image (using Model)"
+      "title": "VAE Decode"
     }
   },
-  "511": {
-    "inputs": {
-      "factor": 0.5000000000000001,
-      "resampler": "nearest",
-      "IMAGE": [
-        "510",
-        0
-      ]
-    },
-    "class_type": "JDC_ResizeFactor",
-    "_meta": {
-      "title": "Resize Image by Factor"
-    }
-  },
-  "512": {
-    "inputs": {
-      "size": 1920,
-      "interpolation_mode": "bicubic",
-      "image": [
-        "510",
-        0
-      ]
-    },
-    "class_type": "JWImageResizeByLongerSide",
-    "_meta": {
-      "title": "Image Resize by Longer Side"
-    }
-  },
-  "513": {
-    "inputs": {
-      "pixels": [
-        "512",
-        0
-      ],
-      "vae": [
-        "548",
-        2
-      ]
-    },
-    "class_type": "VAEEncode",
-    "_meta": {
-      "title": "VAE Encode"
-    }
-  },
-  "514": {
-    "inputs": {
-      "wildcard_string": "A woman, A professional {amateur|cinematic|epic|luxurious and expensive|bokeh|dark theme|colorful|pastel-theme|white themed|night-time|abstract} photo of a indian woman, with black hair and a hairstyle, \n",
-      "seed": 387315490760478,
-      "multiple_separator": " ",
-      "recache_wildcards": false,
-      "consolewildcard_log": false,
-      "tag_extraction_tags": ""
-    },
-    "class_type": "📝 Wildcard Processor",
-    "_meta": {
-      "title": "📝 Wildcard Processor - Prefix"
-    }
-  },
-  "516": {
-    "inputs": {
-      "wildcard_string": ",swf, detailed background<lora:dmd2_sdxl_4step_lora:0.75>",
-      "seed": 48671135438248,
-      "multiple_separator": " ",
-      "recache_wildcards": false,
-      "consolewildcard_log": false,
-      "tag_extraction_tags": ""
-    },
-    "class_type": "📝 Wildcard Processor",
-    "_meta": {
-      "title": "📝 Wildcard Processor - Suffix"
-    }
-  },
-  "548": {
-    "inputs": {
-      "ckpt_name": "perfectionRealisticILXL_41.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
-    }
-  },
-  "556": {
+  "9": {
     "inputs": {
       "filename_prefix": "ComfyUI",
       "images": [
-        "495",
+        "8",
         0
       ]
     },
@@ -519,34 +58,84 @@
       "title": "Save Image"
     }
   },
-  "557": {
+  "16": {
     "inputs": {
-      "string_a": [
-        "514",
-        0
-      ],
-      "string_b": [
-        "558",
+      "text": "",
+      "clip": [
+        "54",
         0
       ]
     },
-    "class_type": "ConcatStringSingle",
+    "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "Concat String (Single) 📅🅕🅝"
+      "title": "Positive Prompt"
     }
   },
-  "558": {
+  "53": {
     "inputs": {
-      "wildcard_string": "\n",
-      "seed": 387315490760478,
-      "multiple_separator": " ",
-      "recache_wildcards": false,
-      "consolewildcard_log": false,
-      "tag_extraction_tags": ""
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
     },
-    "class_type": "📝 Wildcard Processor",
+    "class_type": "EmptySD3LatentImage",
     "_meta": {
-      "title": "📝 Wildcard Processor - Prefix"
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "54": {
+    "inputs": {
+      "clip_name1": "clip_l_hidream.safetensors",
+      "clip_name2": "clip_g_hidream.safetensors",
+      "clip_name3": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "clip_name4": "llama_3.1_8b_instruct_fp8_scaled.safetensors"
+    },
+    "class_type": "QuadrupleCLIPLoader",
+    "_meta": {
+      "title": "QuadrupleCLIPLoader"
+    }
+  },
+  "55": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "70": {
+    "inputs": {
+      "shift": 6.000000000000001,
+      "model": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "81": {
+    "inputs": {
+      "unet_name": "hidream-i1-full-Q8_0.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "82": {
+    "inputs": {
+      "text": "watermark, text, simple background,nswf, blurry",
+      "clip": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
     }
   }
 }
