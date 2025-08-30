@@ -1,10 +1,10 @@
 {
   "3": {
     "inputs": {
-      "seed": 647719102242276,
+      "seed": 186823327838162,
       "steps": 50,
       "cfg": 5,
-      "sampler_name": "uni_pc",
+      "sampler_name": "uni_pc_bh2",
       "scheduler": "simple",
       "denoise": 1,
       "model": [
@@ -16,7 +16,7 @@
         0
       ],
       "negative": [
-        "81",
+        "40",
         0
       ],
       "latent_image": [
@@ -71,6 +71,19 @@
       "title": "Positive Prompt"
     }
   },
+  "40": {
+    "inputs": {
+      "text": "blurry, distorted face, extra limbs, bad anatomy, unrealistic lighting, oversaturated colors, low quality, watermark, text, logo, cropped head, poorly drawn hands",
+      "clip": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
   "53": {
     "inputs": {
       "width": 768,
@@ -103,22 +116,9 @@
       "title": "Load VAE"
     }
   },
-  "70": {
+  "69": {
     "inputs": {
-      "shift": 3.0000000000000004,
-      "model": [
-        "76",
-        0
-      ]
-    },
-    "class_type": "ModelSamplingSD3",
-    "_meta": {
-      "title": "ModelSamplingSD3"
-    }
-  },
-  "76": {
-    "inputs": {
-      "unet_name": "hidream_i1_full_fp16.safetensors",
+      "unet_name": "hidream_i1_full_fp8.safetensors",
       "weight_dtype": "default"
     },
     "class_type": "UNETLoader",
@@ -126,17 +126,17 @@
       "title": "Load Diffusion Model"
     }
   },
-  "81": {
+  "70": {
     "inputs": {
-      "text": "blurry, distorted face, extra limbs, bad anatomy, unrealistic lighting, oversaturated colors, low quality, watermark, text, logo, cropped head, poorly drawn hands, poorly drown eyes",
-      "clip": [
-        "54",
+      "shift": 3.0000000000000004,
+      "model": [
+        "69",
         0
       ]
     },
-    "class_type": "CLIPTextEncode",
+    "class_type": "ModelSamplingSD3",
     "_meta": {
-      "title": "Positive Prompt"
+      "title": "ModelSamplingSD3"
     }
   }
 }
