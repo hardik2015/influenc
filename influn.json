@@ -1,7 +1,7 @@
 {
   "3": {
     "inputs": {
-      "seed": 875852684844049,
+      "seed": 647719102242276,
       "steps": 50,
       "cfg": 5,
       "sampler_name": "uni_pc",
@@ -16,7 +16,7 @@
         0
       ],
       "negative": [
-        "82",
+        "81",
         0
       ],
       "latent_image": [
@@ -105,9 +105,9 @@
   },
   "70": {
     "inputs": {
-      "shift": 6.000000000000001,
+      "shift": 3.0000000000000004,
       "model": [
-        "81",
+        "76",
         0
       ]
     },
@@ -116,18 +116,19 @@
       "title": "ModelSamplingSD3"
     }
   },
-  "81": {
+  "76": {
     "inputs": {
-      "unet_name": "hidream-i1-full-Q8_0.gguf"
+      "unet_name": "hidream_i1_full_fp16.safetensors",
+      "weight_dtype": "default"
     },
-    "class_type": "UnetLoaderGGUF",
+    "class_type": "UNETLoader",
     "_meta": {
-      "title": "Unet Loader (GGUF)"
+      "title": "Load Diffusion Model"
     }
   },
-  "82": {
+  "81": {
     "inputs": {
-      "text": "watermark, text, simple background,nswf, blurry",
+      "text": "blurry, distorted face, extra limbs, bad anatomy, unrealistic lighting, oversaturated colors, low quality, watermark, text, logo, cropped head, poorly drawn hands, poorly drown eyes",
       "clip": [
         "54",
         0
@@ -135,7 +136,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "Positive Prompt"
     }
   }
 }
