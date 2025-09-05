@@ -2,7 +2,7 @@
   "3": {
     "inputs": {
       "seed": 573457220880227,
-      "steps": 20,
+      "steps": 30,
       "cfg": 2.5,
       "sampler_name": "euler",
       "scheduler": "simple",
@@ -103,8 +103,8 @@
   },
   "58": {
     "inputs": {
-      "width": 368,
-      "height": 368,
+      "width": 1024,
+      "height": 1024,
       "batch_size": 1
     },
     "class_type": "EmptySD3LatentImage",
@@ -112,22 +112,9 @@
       "title": "EmptySD3LatentImage"
     }
   },
-  "60": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": [
-        "8",
-        0
-      ]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
-  },
   "66": {
     "inputs": {
-      "shift": 3.1000000000000005,
+      "shift": 3.1,
       "model": [
         "37",
         0
@@ -136,6 +123,46 @@
     "class_type": "ModelSamplingAuraFlow",
     "_meta": {
       "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "67": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "file_type": "JPEG",
+      "remove_metadata": true,
+      "images": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "SaveImagePlus",
+    "_meta": {
+      "title": "Save Image Plus"
+    }
+  },
+  "68": {
+    "inputs": {
+      "model_name": "4x-AnimeSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "69": {
+    "inputs": {
+      "upscale_model": [
+        "68",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
     }
   }
 }
