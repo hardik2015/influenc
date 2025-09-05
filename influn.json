@@ -74,7 +74,7 @@
   "37": {
     "inputs": {
       "unet_name": "qwen_image_fp8_e4m3fn.safetensors",
-      "weight_dtype": "fp8_e4m3fn"
+      "weight_dtype": "default"
     },
     "class_type": "UNETLoader",
     "_meta": {
@@ -85,7 +85,7 @@
     "inputs": {
       "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
       "type": "qwen_image",
-      "device": "cpu"
+      "device": "default"
     },
     "class_type": "CLIPLoader",
     "_meta": {
