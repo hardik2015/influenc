@@ -1,58 +1,32 @@
 {
   "3": {
     "inputs": {
-      "seed": 573457220880227,
-      "steps": 30,
+      "seed": 976480016588017,
+      "steps": 20,
       "cfg": 2.5,
       "sampler_name": "euler",
       "scheduler": "simple",
       "denoise": 1,
       "model": [
-        "66",
+        "75",
         0
       ],
       "positive": [
-        "6",
+        "76",
         0
       ],
       "negative": [
-        "7",
+        "77",
         0
       ],
       "latent_image": [
-        "58",
+        "88",
         0
       ]
     },
     "class_type": "KSampler",
     "_meta": {
       "title": "KSampler"
-    }
-  },
-  "6": {
-    "inputs": {
-      "text": "",
-      "clip": [
-        "38",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Positive Prompt)"
-    }
-  },
-  "7": {
-    "inputs": {
-      "text": "3D render, photorealistic, gradients, shadows, reflections, textures, noise, messy composition, depth of field, blur, realism, text, watermark, low quality, distorted anatomy, pixelated edges",
-      "clip": [
-        "38",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Negative Prompt)"
     }
   },
   "8": {
@@ -73,7 +47,7 @@
   },
   "37": {
     "inputs": {
-      "unet_name": "qwen_image_fp8_e4m3fn.safetensors",
+      "unet_name": "qwen_image_edit_fp8_e4m3fn.safetensors",
       "weight_dtype": "default"
     },
     "class_type": "UNETLoader",
@@ -101,22 +75,24 @@
       "title": "Load VAE"
     }
   },
-  "58": {
+  "60": {
     "inputs": {
-      "width": 1216,
-      "height": 832,
-      "batch_size": 1
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
     },
-    "class_type": "EmptySD3LatentImage",
+    "class_type": "SaveImage",
     "_meta": {
-      "title": "EmptySD3LatentImage"
+      "title": "Save Image"
     }
   },
   "66": {
     "inputs": {
-      "shift": 3.1,
+      "shift": 3,
       "model": [
-        "37",
+        "89",
         0
       ]
     },
@@ -125,44 +101,112 @@
       "title": "ModelSamplingAuraFlow"
     }
   },
-  "67": {
+  "75": {
     "inputs": {
-      "filename_prefix": "ComfyUI",
-      "file_type": "JPEG",
-      "remove_metadata": true,
-      "images": [
-        "69",
+      "strength": 1,
+      "model": [
+        "66",
         0
       ]
     },
-    "class_type": "SaveImagePlus",
+    "class_type": "CFGNorm",
     "_meta": {
-      "title": "Save Image Plus"
+      "title": "CFGNorm"
     }
   },
-  "68": {
+  "76": {
     "inputs": {
-      "model_name": "4x-AnimeSharp.pth"
-    },
-    "class_type": "UpscaleModelLoader",
-    "_meta": {
-      "title": "Load Upscale Model"
-    }
-  },
-  "69": {
-    "inputs": {
-      "upscale_model": [
-        "68",
+      "prompt": "",
+      "clip": [
+        "38",
+        0
+      ],
+      "vae": [
+        "39",
         0
       ],
       "image": [
-        "8",
+        "93",
         0
       ]
     },
-    "class_type": "ImageUpscaleWithModel",
+    "class_type": "TextEncodeQwenImageEdit",
     "_meta": {
-      "title": "Upscale Image (using Model)"
+      "title": "TextEncodeQwenImageEdit"
+    }
+  },
+  "77": {
+    "inputs": {
+      "prompt": "",
+      "clip": [
+        "38",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ],
+      "image": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "TextEncodeQwenImageEdit",
+    "_meta": {
+      "title": "TextEncodeQwenImageEdit"
+    }
+  },
+  "78": {
+    "inputs": {
+      "image": "start.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "88": {
+    "inputs": {
+      "pixels": [
+        "93",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "89": {
+    "inputs": {
+      "lora_name": "Qwen-Image-Lightning-4steps-V1.0.safetensors",
+      "strength_model": 1,
+      "model": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "93": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "megapixels": 1,
+      "image": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "Scale Image to Total Pixels"
     }
   }
 }
