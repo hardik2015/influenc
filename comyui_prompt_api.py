@@ -67,7 +67,7 @@ def inject_prompt(payload, prompt_text, node_id=PROMPT_NODE_ID):
     seednode1 = payload["prompt"].get(SEED_NODE_ID1)
     if not node or "inputs" not in node:
         raise ValueError(f"Node ID {node_id} not found or missing inputs in workflow.")
-    node["inputs"]["text"] = prompt_text
+    node["inputs"]["prompt"] = prompt_text
     seednode1["inputs"]["seed"] = random.randint(10**13, 10**14 - 1)
     return payload
 
@@ -127,7 +127,7 @@ def generate():
         if not isinstance(p, str):
             continue
         try:
-            full_prompt = build_prompt(p)
+            full_prompt = p
             payload = load_workflow()
             for counter in range(count):
                 payload = inject_prompt(payload, full_prompt)
