@@ -16,7 +16,7 @@ PROMPT_NODE_ID = "6"
 SEED_NODE_ID1="3"
 UPLOAD_FOLDER = "../ComfyUI/output/"
 HOST = "0.0.0.0"
-PORT = 5010
+PORT = 5050
 
 # Accept ImageKit credentials from command line
 if len(sys.argv) < 5:
