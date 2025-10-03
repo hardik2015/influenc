@@ -79,7 +79,7 @@
     "inputs": {
       "filename_prefix": "ComfyUI",
       "images": [
-        "8",
+        "95",
         0
       ]
     },
@@ -183,7 +183,7 @@
   },
   "89": {
     "inputs": {
-      "lora_name": "Qwen-Image-Lightning-4steps-V1.0.safetensors",
+      "lora_name": "Qwen-Image-Lightning-4steps-V2.0.safetensors",
       "strength_model": 1,
       "model": [
         "37",
@@ -207,6 +207,31 @@
     "class_type": "ImageScaleToTotalPixels",
     "_meta": {
       "title": "Scale Image to Total Pixels"
+    }
+  },
+  "94": {
+    "inputs": {
+      "model_name": "4x-AnimeSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "95": {
+    "inputs": {
+      "upscale_model": [
+        "94",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
     }
   }
 }
