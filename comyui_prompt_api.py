@@ -12,7 +12,7 @@ import random
 COMFY_API_BASE = os.getenv("COMFY_API_BASE", "http://localhost:8188/api")
 COMFY_API_PROMPT = f"{COMFY_API_BASE}/prompt"
 COMFY_API_QUEUE = f"{COMFY_API_BASE}/queue"
-PROMPT_NODE_ID = "6"
+PROMPT_NODE_ID = "76"
 SEED_NODE_ID1="3"
 UPLOAD_FOLDER = "../ComfyUI/output/"
 HOST = "0.0.0.0"
