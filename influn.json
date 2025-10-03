@@ -132,7 +132,7 @@
     },
     "class_type": "TextEncodeQwenImageEdit",
     "_meta": {
-      "title": "TextEncodeQwenImageEdit"
+      "title": "Possitive Edit"
     }
   },
   "77": {
@@ -153,7 +153,7 @@
     },
     "class_type": "TextEncodeQwenImageEdit",
     "_meta": {
-      "title": "TextEncodeQwenImageEdit"
+      "title": "Negative Edit"
     }
   },
   "78": {
@@ -183,7 +183,7 @@
   },
   "89": {
     "inputs": {
-      "lora_name": "Qwen-Image-Lightning-4steps-V2.0.safetensors",
+      "lora_name": "Qwen-Image-Lightning-4steps-V1.0.safetensors",
       "strength_model": 1,
       "model": [
         "37",
